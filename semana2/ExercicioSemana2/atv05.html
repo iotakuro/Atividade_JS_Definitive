@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário Dinâmico</title>
+</head>
+<body>
+
+  <h2>Formulário Dinâmico</h2>
+
+  <form id="formulario">
+    <label for="valor">Digite um valor:</label>
+    <input type="text" id="valor" required>
+    <button type="button" onclick="adicionarValor()">Adicionar</button>
+  </form>
+
+  <h3>Valores cadastrados em ordem alfabética:</h3>
+  <ol id="listaValores"></ol>
+
+  <script>
+    const valores = [];
+
+    function adicionarValor() {
+      const novoValor = document.getElementById('valor').value.trim();
+
+      if (novoValor !== '') {
+        valores.push(novoValor);
+
+        document.getElementById('valor').value = '';
+
+        atualizarLista();
+      }
+    }
+
+    function atualizarLista() {
+      
+      valores.sort();
+
+      const listaValores = document.getElementById('listaValores');
+
+      listaValores.innerHTML = '';
+
+      valores.forEach((valor) => {
+        const itemLista = document.createElement('li');
+        itemLista.textContent = valor;
+        listaValores.appendChild(itemLista);
+      });
+    }
+  </script>
+<br>
+<a href="../atividade.html">voltar</a>
+</body>
+</html>

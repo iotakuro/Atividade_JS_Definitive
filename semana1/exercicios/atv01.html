@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Tipo de Dado</title>
+</head>
+<body>
+    <div>
+        <script>
+            var dado = prompt("Digite um dado:");
+                var verificarTipo = confirm("Deseja verificar o tipo do dado informado?");
+                if (verificarTipo) {
+            var tipoDoDado;
+            if (!isNaN(dado)) {
+                if (Number.isInteger(parseFloat(dado))) {
+                    tipoDoDado = "Número (inteiro)";
+                } else {
+                    tipoDoDado = "Número (decimal)";
+                }
+            } else {
+                tipoDoDado = typeof dado;
+            }
+            document.write("Tipo do dado: " + tipoDoDado);
+        } 
+        else {
+            document.write("Obrigado por visitar esta página");
+        }
+        </script>
+    </div>
+<br>
+<a href="../atividade.html">voltar</a>
+</body>
+</html>

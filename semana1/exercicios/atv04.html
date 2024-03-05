@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Fatorial</title>
+</head>
+<body>
+    <script>
+        var numero = parseInt(prompt("Digite um número inteiro positivo:"));
+        var fatorial = 1;
+
+        if (numero >= 0) {
+            for (var i = 1; i <= numero; i++) {
+                fatorial *= i;
+            }
+            alert("O fatorial de " + numero + " é " + fatorial);
+        } else {
+            alert("Por favor, digite um número inteiro positivo válido.");
+        }
+    </script>
+    <a href="../atividade.html">voltar</a>
+</body>
+</html>
