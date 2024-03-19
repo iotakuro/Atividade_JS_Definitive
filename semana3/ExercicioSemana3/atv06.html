@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Data Atual</title>
+    <style>
+        #data-atual {
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="data-atual"></div>
+
+    <script>
+        // Função para formatar a data
+        function formatarData(data) {
+            const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+            const diaSemana = diasSemana[data.getDay()];
+            const diaMes = data.getDate();
+            const mes = meses[data.getMonth()];
+            const ano = data.getFullYear();
+
+            return `${diaSemana}, ${diaMes} de ${mes} de ${ano}`;
+        }
+
+        // Obter a data atual
+        const dataAtual = new Date();
+
+        // Formatar a data
+        const dataFormatada = formatarData(dataAtual);
+
+        // Exibir a data formatada
+        const elementoData = document.getElementById("data-atual");
+        elementoData.textContent = dataFormatada;
+    </script>
+    <br>
+    <br>
+    <a href="../atividade.html">voltar</a>
+</body>
+</html>
