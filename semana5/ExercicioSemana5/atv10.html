@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de Pessoas</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script>
+        let contadorHomens = 0;
+        let contadorMulheres = 0;
+        let contadorTotal = 0;
+
+        window.onload = function () {
+            carregarPagina();
+        };
+
+        function resetar() {
+            contadorHomens = 0;
+            contadorMulheres = 0;
+            contadorTotal = 0;
+            carregarPagina();
+        }
+
+        function atualizarContadores(genero, acao) {
+            if (genero === "homens") {
+                contadorHomens += acao === "adicionar" ? 1 : -1;
+            } else if (genero === "mulheres") {
+                contadorMulheres += acao === "adicionar" ? 1 : -1;
+            }
+            contadorTotal += acao === "adicionar" ? 1 : -1;
+            carregarPagina();
+        }
+
+        function carregarPagina() {
+            const container = document.getElementById("container");
+            container.innerHTML = "";
+
+            const containerPrincipal = document.createElement("div");
+            containerPrincipal.setAttribute(
+                "style",
+                "width: 70%; display: grid; grid-template-columns: 1fr 1fr; justify-content: center; margin: 0 auto; color: #000;"
+            );
+
+            const containerTotal = document.createElement("div");
+            containerTotal.setAttribute(
+                "style",
+                "margin: auto; display: flex; flex-direction: column; align-items: center; grid-column: span 3;"
+            );
+
+            const botaoResetar = document.createElement("img");
+            botaoResetar.src = "https://cdn.icon-icons.com/icons2/2456/PNG/512/reset_undo_arrow_icon_149006.png";
+            botaoResetar.onclick = resetar;
+            botaoResetar.setAttribute("style", "width: 60px; height: 60px;");
+
+            const titulo = document.createElement("h1");
+            titulo.textContent = "Total";
+
+            const areaContadorTotal = document.createElement("div");
+            areaContadorTotal.textContent = contadorTotal;
+            areaContadorTotal.setAttribute(
+                "style",
+                "padding: 10px 40px; border: solid; border-radius: 10px; font-size: 25px;"
+            );
+
+            containerTotal.appendChild(titulo);
+            containerTotal.appendChild(areaContadorTotal);
+            containerTotal.appendChild(botaoResetar);
+
+            const secaoHomens = criarSecaoGenero("Homens", "homens");
+            const secaoMulheres = criarSecaoGenero("Mulheres", "mulheres");
+            containerPrincipal.appendChild(containerTotal);
+            containerPrincipal.appendChild(secaoHomens);
+
+            const divEspaco = document.createElement("div");
+            divEspaco.style.width = "200px";
+            containerPrincipal.appendChild(divEspaco);
+
+            containerPrincipal.appendChild(secaoMulheres);
+
+            container.appendChild(containerPrincipal);
+        }
+
+        function criarSecaoGenero(textoTitulo, genero) {
+            const secao = document.createElement("div");
+            secao.className = "secao-genero";
+            secao.setAttribute("style", "width: 200px");
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = textoTitulo;
+
+            const imagem = document.createElement("img");
+            imagem.src =
+                genero === "homens"
+                    ? "https://cdn.icon-icons.com/icons2/11/PNG/256/customer_person_people_man_user_client_1629.png"
+                    : "https://cdn.icon-icons.com/icons2/11/PNG/256/customer_person_people_woman_you_1627.png";
+            imagem.setAttribute("style", "width: 200px; height: 200px;");
+
+            const botaoAdicionar = document.createElement("img");
+            botaoAdicionar.src =
+                "https://cdn.icon-icons.com/icons2/957/PNG/128/add_icon-icons.com_74429.png";
+            botaoAdicionar.onclick = () => atualizarContadores(genero, "adicionar");
+            botaoAdicionar.setAttribute("style", "width: 50px; height: 50px;");
+
+            const botaoRemover = document.createElement("img");
+            botaoRemover.src = "https://cdn.icon-icons.com/icons2/325/PNG/256/Math-minus-icon_34786.png";
+            botaoRemover.onclick = () => atualizarContadores(genero, "remover");
+            botaoRemover.setAttribute("style", "width: 35px; height: 35px;");
+
+            const areaContador = document.createElement("div");
+            areaContador.textContent = genero === "homens" ? contadorHomens : contadorMulheres;
+            areaContador.setAttribute(
+                "style",
+                "padding: 10px 1px; border: solid; border-radius: 10px; font-size: 25px;  text-align: center; font-family: TimesNewRoman;"
+            );
+
+            const containerBotoes = document.createElement("div");
+            containerBotoes.setAttribute(
+                "style",
+                "padding: 10px; display: flex; align-items: center;"
+            );
+
+            containerBotoes.appendChild(botaoAdicionar);
+            containerBotoes.appendChild(botaoRemover);
+
+            secao.appendChild(titulo);
+            secao.appendChild(imagem);
+            secao.appendChild(containerBotoes);
+            secao.appendChild(areaContador);
+
+            return secao;
+        }
+    </script>
+    <br>
+    <a href="../Atividade.html">voltar</a>
+</body>
+
+</html>
+
+<!-- Esse código foi desenvolvido com colaboração entre os alunos João Antônio, Carlos Alfredo e José Victor. -->
