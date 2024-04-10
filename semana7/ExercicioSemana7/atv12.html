@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letreiro com React</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class TypingText extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          displayText: ''
+        };
+        this.text = "Venha estudar na Fatec!!!";
+      }
+
+      componentDidMount() {
+        this.typeText();
+      }
+
+      typeText = () => {
+        let index = 0;
+        const intervalId = setInterval(() => {
+          if (index < this.text.length) {
+            this.setState({
+              displayText: this.state.displayText + this.text[index]
+            });
+            index++;
+          } else {
+            clearInterval(intervalId);
+            setTimeout(() => {
+              this.setState({
+                displayText: ''
+              });
+              this.typeText();
+            }, 1000);
+          }
+        }, 100);
+      };
+
+      render() {
+        return (
+          <div>{this.state.displayText}</div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <TypingText />,
+      document.getElementById('root')
+    );
+  </script>
+  <br>
+  <a href="../Atividade.html">voltar</a>
+</body>
+</html>
+
+<!-- Esse código foi desenvolvido com colaboração entre os alunos João Antônio e Carlos Alfredo. -->
